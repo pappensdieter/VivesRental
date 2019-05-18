@@ -50,7 +50,7 @@ namespace VivesRental.Views
             User user = userService.Get(Convert.ToInt16(drpUserId.SelectedItem));
             if (user != null)
             {
-                SetUser(user);
+                SetUserToForm(user);
                 FormEditMode(true);
             }
         }
@@ -90,7 +90,7 @@ namespace VivesRental.Views
             FormEditMode(false);
         }
 
-        // gets user from from without id
+        // get user from form without id
         private User GetUserFromForm()
         {
             User user = new User();
@@ -103,7 +103,7 @@ namespace VivesRental.Views
         }
 
         // set user to form
-        private void SetUser(User user)
+        private void SetUserToForm(User user)
         {
             FirstName.Text = user.FirstName;
             Name.Text = user.Name;

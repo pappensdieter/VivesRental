@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VivesRental.Views"
         mc:Ignorable="d"
-        Title="UserManagementView" Height="450" Width="800">
+        Title="User Management" Height="450" Width="800">
     <Grid Background="#604D8D">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width = "auto"/>
@@ -22,7 +22,7 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row = "0" Grid.Column = "0" Text = "User ID" Margin = "10" HorizontalAlignment = "Left" VerticalAlignment = "Center" Width = "100" />
-        <ComboBox Name="drpUserId" Grid.Row = "0" Grid.Column = "1" Margin = "10" SelectionChanged="SelectUser" IsEnabled="{Binding ElementName=cbEdit, Path=IsChecked}" />
+        <ComboBox Name="drpUserId" Grid.Row = "0" Grid.Column = "1" Margin = "10" SelectionChanged="SelectUser" />
 
         <TextBlock Grid.Row = "1" Grid.Column = "0" Text = "First Name" Margin = "10" HorizontalAlignment = "Left" VerticalAlignment = "Center" Width = "100" />
         <TextBox Name="FirstName" Grid.Row = "1" Grid.Column = "1" Margin = "10" />

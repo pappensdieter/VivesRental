@@ -35,21 +35,18 @@ namespace VivesRental
         }
         private void ShowItemMangement(object sender, RoutedEventArgs e)
         {
-            //DataContext = new ItemManagementVM();
-            //Window window = new ItemManagementView();
-            //window.ShowDialog();
+            Window window = new ItemManagementView();
+            window.ShowDialog();
         }
 
         private void ShowRentalOrders(object sender, RoutedEventArgs e)
         {
-            //DataContext = new RentalOrdersVM();
             //Window window = new RentalOrdersView();
             //window.ShowDialog();
         }
 
         private void ShowNewRental(object sender, RoutedEventArgs e)
         {
-            //DataContext = new NewRentalVM();
             //Window window = new NewRentalView();
             //window.ShowDialog();
         }
