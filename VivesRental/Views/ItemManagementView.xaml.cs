@@ -49,7 +49,7 @@ namespace VivesRental.Views
         {
             Item item = (Item)ItemTable.SelectedItem;
             Window window = new EditAddItemView(item);
-            window.Title = "Edit Item";
+            window.Title = "Edit Item with id: " + item.Id;
             window.ShowDialog();
             
             if (window.DialogResult == true)
@@ -63,6 +63,7 @@ namespace VivesRental.Views
         {
             Item item = (Item)ItemTable.SelectedItem;
             Window window = new RentalItemsView(item);
+            window.Title = "Rental Items of: " + item.Name;
             window.ShowDialog();
         }
 

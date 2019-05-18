@@ -32,6 +32,7 @@ namespace VivesRental.Views
             FormEditMode(false);
         }
 
+        // fills dropdown with userid's
         public void FillDrpUserId()
         {
             var listUsers = userService.All();
@@ -45,6 +46,7 @@ namespace VivesRental.Views
             drpUserId.ItemsSource = listUserIds;
         }
 
+        // select userid from dropdown
         private void SelectUser(object sender, SelectionChangedEventArgs e)
         {
             User user = userService.Get(Convert.ToInt16(drpUserId.SelectedItem));

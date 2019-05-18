@@ -47,13 +47,12 @@ namespace VivesRental
 
         private void ShowNewRental(object sender, RoutedEventArgs e)
         {
-            //Window window = new NewRentalView();
-            //window.ShowDialog();
+            Window window = new NewRentalView();
+            window.ShowDialog();
         }
 
         private void ShowUserManagement(object sender, RoutedEventArgs e)
         {
-            //DataContext = new NewRentalVM();
             Window window = new UserManagementView();
             window.ShowDialog();
         }

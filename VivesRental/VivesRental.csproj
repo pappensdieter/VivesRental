@@ -68,6 +68,9 @@
     <Compile Include="Views\ItemManagementView.xaml.cs">
       <DependentUpon>ItemManagementView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\NewRentalView.xaml.cs">
+      <DependentUpon>NewRentalView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RentalItemsView.xaml.cs">
       <DependentUpon>RentalItemsView.xaml</DependentUpon>
     </Compile>
@@ -91,6 +94,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ItemManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\NewRentalView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
