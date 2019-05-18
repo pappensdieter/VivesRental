@@ -1,0 +1,42 @@
+﻿<Window x:Class="VivesRental.ItemAddPopUp"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VivesRental"
+        mc:Ignorable="d"
+        Title="ItemAddPopUp" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "Auto" MinWidth="148" />
+            <ColumnDefinition Width="Auto" MinWidth="593.6" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "auto" />
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row = "1" Grid.Column = "0" Text = "Description" Margin = "10,32.8,0,32.8"  
+         HorizontalAlignment = "Left" VerticalAlignment = "Center" Width = "100" Height="16" />
+        <TextBox Name="Description" Grid.Row = "1" Grid.Column = "1" Margin = "12.2,9.8,6.2,9.8" />
+        <TextBlock Grid.Row = "0" Grid.Column = "0" Text = "Name" Margin = "10,13,0,14.2"  
+         HorizontalAlignment = "Left" VerticalAlignment = "Center" Width = "100" Height="16" />
+        <TextBlock Grid.Row = "2" Grid.Column = "0" Text = "Manufacturer" Margin = "10,33.2,0,33.2"  
+         HorizontalAlignment = "Left" VerticalAlignment = "Center" Width = "100" Height="16" />
+        <TextBox Name="Manufacturer" Grid.Row = "2" Grid.Column = "1" Margin = "12.2,10.2,6.2,10.2" />
+        <TextBlock Grid.Row = "3" Grid.Column = "0" Text = "Publisher" Margin = "10,32.8,0,32.8"  
+         HorizontalAlignment = "Left" VerticalAlignment = "Center" Width = "100" Height="16" />
+        <TextBox Name="Publisher" Grid.Row = "3" Grid.Column = "1" Margin = "12.2,9.8,6.2,9.8" />
+        <TextBlock Grid.Row = "4" Grid.Column = "0" Text = "RentalExpiresAfterDays" Margin = "0,34.2,0,29.2"  
+         HorizontalAlignment = "Left" VerticalAlignment = "Center" Width = "131" Height="19" />
+        <TextBox Name="Exparation" Grid.Row = "4" Grid.Column = "1" Margin = "12.2,10.2,6.2,10.2" />
+        <Button Name="Submit" Grid.Row="5" Grid.Column="1" Width="100" HorizontalAlignment="Left" Margin="17.2,14.8,0,15" Click="Submit_Click">Submit</Button>
+        <Button Name="Cancel" Grid.Column="1" HorizontalAlignment="Left" Margin="516.2,13.8,0,0" Grid.Row="5" VerticalAlignment="Top" Width="75" Height="19" Click="Cancel_Click">Cancel</Button>
+        <TextBox Name="Name" Grid.Column = "1" Margin = "17.2,10,10.2,14.2" />
+    </Grid>
+</Window>

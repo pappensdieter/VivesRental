@@ -1,0 +1,41 @@
+﻿<Window x:Class="VivesRental.newRental"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VivesRental"
+        mc:Ignorable="d"
+        Title="newRental" Height="450" Width="800">
+    <Grid x:Name="NewRentalGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Label Content="New Rentals"/>
+        <ListBox Name="Available" Grid.Row="1"  ListBoxItem.MouseDoubleClick="MouseDoubleClick_Available">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="1" Grid.Column="1" VerticalAlignment="Center">
+            <Button Content="->" Margin="5" Click="Click_Select"/>
+            <Button Content="&lt;-" Margin="5" Click="Click_Deselect"/>
+        </StackPanel>
+        <ListBox Name="Selected" Grid.Row="1" Grid.Column="2" ListBoxItem.MouseDoubleClick="MouseDoubleClick_Deselect">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{Binding Name}"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Content="Finish" Grid.Row="2" Grid.ColumnSpan="3" Margin="5" Click="Click_Finish"/>
+    </Grid>
+</Window>
