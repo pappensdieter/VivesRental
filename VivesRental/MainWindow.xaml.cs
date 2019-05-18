@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using VivesRental.Model;
 using VivesRental.Services;
+using VivesRental.Views;
 
 namespace VivesRental
 {
@@ -22,126 +23,58 @@ namespace VivesRental
     /// </summary>
     public partial class MainWindow : Window
     {
-        IList<User> list;
+        private RentalOrderService rentalOrderService;
+        private RentalOrderLineService rentalOrderLineService;
 
-        UserService service = new UserService();
-        RentalOrderService OrderService = new RentalOrderService();
-        RentalOrderLineService OrderLineService = new RentalOrderLineService();
         public MainWindow()
         {
+            rentalOrderService = new RentalOrderService();
+            rentalOrderLineService = new RentalOrderLineService();
+
             InitializeComponent();
-            FillDrop();
+        }
+        private void ShowItemMangement(object sender, RoutedEventArgs e)
+        {
+            //DataContext = new ItemManagementVM();
+            //Window window = new ItemManagementView();
+            //window.ShowDialog();
         }
 
-        private void Btn_ItemManger(object sender, RoutedEventArgs e)
+        private void ShowRentalOrders(object sender, RoutedEventArgs e)
         {
-            Window window = new ItemManagment();
-            window.Show();
+            //DataContext = new RentalOrdersVM();
+            //Window window = new RentalOrdersView();
+            //window.ShowDialog();
         }
-        public void FillDrop()
+
+        private void ShowNewRental(object sender, RoutedEventArgs e)
         {
-            IList idList = new List<String>();
-            list = service.All();
-            idList.Add("-----------");
-            foreach (var item in list)
+            //DataContext = new NewRentalVM();
+            //Window window = new NewRentalView();
+            //window.ShowDialog();
+        }
+
+        private void ShowUserManagement(object sender, RoutedEventArgs e)
+        {
+            //DataContext = new NewRentalVM();
+            Window window = new UserManagementView();
+            window.ShowDialog();
+        }
+
+        private void AcceptReturn(object sender, RoutedEventArgs e)
+        {
+            if (RentalId.Text != null)
             {
-                idList.Add(item.Id.ToString());
+                int id = Convert.ToInt16(RentalId.Text);
+
+                var RentalOrderLines = rentalOrderLineService.FindByRentalOrderId(id);
+                foreach (var OrderLine in RentalOrderLines)
+                {
+                    rentalOrderLineService.Return(OrderLine.Id, DateTime.Now);
+                }
             }
-            drop.ItemsSource = idList;
-        }
-
-        private void Button_SubmitUser(object sender, RoutedEventArgs e)
-        {
-            User user = new User();
-            user.FirstName = FirstName.Text;
-            user.Name = Name.Text;
-            user.PhoneNumber = Phone.Text;
-            user.Email = Email.Text;
-            FirstName.Clear();
-            Name.Clear();
-            Phone.Clear();
-            Email.Clear();
-            service.Create(user);
-            FillDrop();
-        }
-
-        private void Button_ClickEdit(object sender, RoutedEventArgs e)
-        {
-            User user = new User();
-            user.Id = Convert.ToInt32(drop.SelectedItem);
-            user.FirstName = FirstName.Text;
-            user.Name = Name.Text;
-            user.PhoneNumber = Phone.Text;
-            user.Email = Email.Text;
-            FirstName.Clear();
-            Name.Clear();
-            Phone.Clear();
-            Email.Clear();
-            service.Edit(user);
-            FillDrop();
-            Submit.IsEnabled = true;
-            Edit.IsEnabled = false;
-        }
-
-        private void Button_ClickCancel(object sender, RoutedEventArgs e)
-        {
-            FirstName.Clear();
-            Name.Clear();
-            Phone.Clear();
-            Email.Clear();
-            Submit.IsEnabled = true;
-            Edit.IsEnabled = false;
-        }
-
-        private void drop_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            User user = new User();
-            user = service.Get(Convert.ToInt32(drop.SelectedItem));
-            FirstName.Text = user.FirstName;
-            Name.Text = user.Name;
-            Phone.Text = user.PhoneNumber;
-            Email.Text = user.Email;
-            CbEdit.IsChecked = false;
-            Submit.IsEnabled = false;
-            Edit.IsEnabled = true;
-            Delete.IsEnabled = true;
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Window window = new newRental();
-            window.Show();
-        }
-
-        private void Button_ClickDeleteUsr(object sender, RoutedEventArgs e)
-        {
-            FirstName.Clear();
-            Name.Clear();
-            Phone.Clear();
-            Email.Clear();
-            FillDrop();
-            service.Remove(Convert.ToInt32(drop.SelectedItem));
-            Submit.IsEnabled = true;
-            Edit.IsEnabled = false;
-            Delete.IsEnabled = false;
-        }
-
-        private void Button_ClickRentalOrders(object sender, RoutedEventArgs e)
-        {
-            Window RentalOrdersWindow = new RentalOrders();
-            RentalOrdersWindow.ShowDialog();
-        }
-
-        private void Button_ClickAcceptReturn(object sender, RoutedEventArgs e)
-        {
-            int id = Convert.ToInt32(RentalId.Text);
-            var RentalOrderLines = OrderLineService.FindByRentalOrderId(id);
-            foreach (var OrderLine in RentalOrderLines)
-            {
-                OrderLineService.Return(OrderLine.Id, DateTime.Now);
-            }
-
             RentalId.Text = "";
         }
+
     }
 }

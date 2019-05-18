@@ -62,42 +62,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="FinishRental.xaml.cs">
-      <DependentUpon>FinishRental.xaml</DependentUpon>
+    <Compile Include="Views\UserManagementView.xaml.cs">
+      <DependentUpon>UserManagementView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="NewRentalFormHandler.cs" />
-    <Compile Include="RentalItemEditPopUp.xaml.cs">
-      <DependentUpon>RentalItemEditPopUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RentalItems.xaml.cs">
-      <DependentUpon>RentalItems.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RentalOrderDetailsPopUp.xaml.cs">
-      <DependentUpon>RentalOrderDetailsPopUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="RentalOrders.xaml.cs">
-      <DependentUpon>RentalOrders.xaml</DependentUpon>
-    </Compile>
-    <Page Include="FinishRental.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ItemAddPopUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ItemDetailsPopUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ItemEditPopUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ItemManagment.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -106,47 +73,16 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ItemAddPopUp.xaml.cs">
-      <DependentUpon>ItemAddPopUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ItemDetailsPopUp.xaml.cs">
-      <DependentUpon>ItemDetailsPopUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ItemEditPopUp.xaml.cs">
-      <DependentUpon>ItemEditPopUp.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ItemManagment.xaml.cs">
-      <DependentUpon>ItemManagment.xaml</DependentUpon>
-    </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="newRental.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="RentalItemEditPopUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RentalItems.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RentalOrderDetailsPopUp.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RentalOrders.xaml">
+    <Page Include="Views\UserManagementView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="newRental.xaml.cs">
-      <DependentUpon>newRental.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -164,7 +100,6 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -187,5 +122,6 @@
       <Name>VivesRental.Services</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
