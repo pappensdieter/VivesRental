@@ -68,6 +68,9 @@
     <Compile Include="Views\ItemManagementView.xaml.cs">
       <DependentUpon>ItemManagementView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RentalItemsView.xaml.cs">
+      <DependentUpon>RentalItemsView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserManagementView.xaml.cs">
       <DependentUpon>UserManagementView.xaml</DependentUpon>
     </Compile>
@@ -88,6 +91,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ItemManagementView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RentalItemsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -126,10 +133,6 @@
     <ProjectReference Include="..\VivesRental.Model\VivesRental.Model.csproj">
       <Project>{c5faf568-2155-4f05-9f3d-4d7430c4ad4f}</Project>
       <Name>VivesRental.Model</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VivesRental.Repository\VivesRental.Repository.csproj">
-      <Project>{569ad08f-efe9-49dc-90b2-91339ac609c3}</Project>
-      <Name>VivesRental.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\VivesRental.Services\VivesRental.Services.csproj">
       <Project>{b1bdb13f-3e80-417f-8612-ab77da5ecb15}</Project>

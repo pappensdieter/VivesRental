@@ -12,7 +12,7 @@
             <RowDefinition Height ="auto"/>
         </Grid.RowDefinitions>
         
-        <DataGrid Name="ItemTable" Height="200" Margin="10,10,10,10" VerticalAlignment="Top" AutoGenerateColumns="False">
+        <DataGrid Name="ItemTable" Margin="10,10,10,10" VerticalAlignment="Top" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Name}" Width="100" Header="Name"/>
                 <DataGridTextColumn Binding="{Binding Description}" Width="100" Header="Description"/>
@@ -22,19 +22,22 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Edit" Click="EditItem"/>
+                            <Button Content="Edit" Click="EditItem" HorizontalAlignment="Right" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="RentalItem" Click="NewRentalItem"/>
+                            <Button Content="Rental Items" Click="ShowRentalItems" HorizontalAlignment="Right" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add" Grid.Row="1" HorizontalAlignment="Left" Margin="10,10,10,10" Width="100" Click="AddItem"/>
+        <DockPanel Grid.Row="1">
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,10,10,10" Width="100" Click="AddItem"/>
+            <Button Content="Cancel" HorizontalAlignment="Right" Margin="10,10,10,10" Width="100" Click="Cancel"/>
+        </DockPanel>
     </Grid>
 </Window>

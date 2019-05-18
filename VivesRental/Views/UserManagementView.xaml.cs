@@ -88,6 +88,7 @@ namespace VivesRental.Views
         {
             ClearForm();
             FormEditMode(false);
+            this.Close();
         }
 
         // get user from form without id

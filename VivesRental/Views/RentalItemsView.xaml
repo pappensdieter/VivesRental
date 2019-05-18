@@ -1,0 +1,29 @@
+﻿<Window x:Class="VivesRental.Views.RentalItemsView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:VivesRental.Views"
+        mc:Ignorable="d"
+        Title="Rental Items" Height="450" Width="800">
+
+    <Grid Background="#604D8D">
+        <Grid.RowDefinitions>
+            <RowDefinition Height ="*"/>
+            <RowDefinition Height ="auto"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="ItemTable" Margin="10,10,10,10" VerticalAlignment="Top" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding ItemId}" Width="100" Header="Item ID"/>
+                <DataGridTextColumn Binding="{Binding Status}" Width="100" Header="Status"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <DockPanel Grid.Row="1">
+            <Button Content="Add" HorizontalAlignment="Left" Margin="10,10,10,10" Width="100" Click="AddRentalItem"/>
+            <Button Content="Cancel" HorizontalAlignment="Right" Margin="10,10,10,10" Width="100" Click="Cancel"/>
+        </DockPanel>
+        
+    </Grid>
+</Window>

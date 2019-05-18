@@ -31,6 +31,7 @@ namespace VivesRental.Views
             FillItemTable();
         }
 
+        // add a new item
         private void AddItem(object sender, RoutedEventArgs e)
         {
             Window window = new EditAddItemView(null);
@@ -43,6 +44,7 @@ namespace VivesRental.Views
             }
         }
 
+        // edit he selected item
         private void EditItem(object sender, RoutedEventArgs e)
         {
             Item item = (Item)ItemTable.SelectedItem;
@@ -56,8 +58,18 @@ namespace VivesRental.Views
             }
         }
 
-        private void NewRentalItem(object sender, RoutedEventArgs e)
+        // show rental items of the selected item
+        private void ShowRentalItems(object sender, RoutedEventArgs e)
         {
+            Item item = (Item)ItemTable.SelectedItem;
+            Window window = new RentalItemsView(item);
+            window.ShowDialog();
+        }
+
+        // cancel/go back to prev screen
+        private void Cancel(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
 
         // fills item table
