@@ -92,7 +92,6 @@ namespace VivesRental.Views
                 this.Close();
             }
             
-            
         }
 
         // cancel/go back to prev screen

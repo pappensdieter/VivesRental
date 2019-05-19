@@ -74,6 +74,12 @@
     <Compile Include="Views\RentalItemsView.xaml.cs">
       <DependentUpon>RentalItemsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\RentalOderDetailsView.xaml.cs">
+      <DependentUpon>RentalOderDetailsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RentalOrdersView.xaml.cs">
+      <DependentUpon>RentalOrdersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\UserManagementView.xaml.cs">
       <DependentUpon>UserManagementView.xaml</DependentUpon>
     </Compile>
@@ -102,6 +108,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RentalItemsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RentalOderDetailsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RentalOrdersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

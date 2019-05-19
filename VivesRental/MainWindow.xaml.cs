@@ -33,43 +33,49 @@ namespace VivesRental
 
             InitializeComponent();
         }
+
+        // shows item management page
         private void ShowItemMangement(object sender, RoutedEventArgs e)
         {
             Window window = new ItemManagementView();
             window.ShowDialog();
         }
 
+        // shows rental orders page
         private void ShowRentalOrders(object sender, RoutedEventArgs e)
         {
-            //Window window = new RentalOrdersView();
-            //window.ShowDialog();
+            Window window = new RentalOrdersView();
+            window.ShowDialog();
         }
 
+        // shows new rental page
         private void ShowNewRental(object sender, RoutedEventArgs e)
         {
             Window window = new NewRentalView();
             window.ShowDialog();
         }
 
+        // shows user management page
         private void ShowUserManagement(object sender, RoutedEventArgs e)
         {
             Window window = new UserManagementView();
             window.ShowDialog();
         }
 
+        // shows user management page
+        private void Quit(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+        
+        // accept a renturn
         private void AcceptReturn(object sender, RoutedEventArgs e)
         {
             if (RentalId.Text != null)
             {
                 int id = Convert.ToInt16(RentalId.Text);
-
-                var RentalOrderLines = rentalOrderLineService.FindByRentalOrderId(id);
-                foreach (var OrderLine in RentalOrderLines)
-                {
-                    rentalOrderLineService.Return(OrderLine.Id, DateTime.Now);
-                }
+                
             }
-            RentalId.Text = "";
         }
 
     }

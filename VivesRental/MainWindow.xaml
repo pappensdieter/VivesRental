@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:VivesRental"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Vives Rental" Height="450" Width="800">
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -26,12 +26,13 @@
 
         <DockPanel Background="#604D8D" Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
             <StackPanel>
-                <Button Content="User Management" Click="ShowUserManagement"/>
-                <Button Content="Item Management"  Click="ShowItemMangement"/>
-                <Button Content="Rental Orders" Click="ShowRentalOrders"/>
-                <Button Content="New Rental"  Click="ShowNewRental"/>
-                <TextBox Name="RentalId"></TextBox>
-                <Button Content="Accept Returns"/>
+                <Button Content="User Management" Margin="3,3,3,10" Click="ShowUserManagement"/>
+                <Button Content="Item Management" Margin="3,0,3,10" Click="ShowItemMangement"/>
+                <Button Content="Rental Orders" Margin="3,0,3,10" Click="ShowRentalOrders"/>
+                <Button Content="New Rental" Margin="3,0,3,10" Click="ShowNewRental"/>
+                <TextBox Name="RentalId" Margin="3,0,3,3"/>
+                <Button Content="Accept Returns" Margin="3,0,3,25"/>
+                <Button Content="Quit" Margin="3,0,3,0" Click="Quit"/>
             </StackPanel>
         </DockPanel>
 

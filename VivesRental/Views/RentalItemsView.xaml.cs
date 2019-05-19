@@ -29,11 +29,8 @@ namespace VivesRental.Views
             rentalItemService = new RentalItemService();
 
             InitializeComponent();
-            if (item != null)
-            {
-                itemToRentalItem = item;
-                FillItemTable(item);
-            }
+            itemToRentalItem = item;
+            FillItemTable();
         }
 
         // add rental item of the selected item in the prev screen
@@ -43,7 +40,7 @@ namespace VivesRental.Views
             rentalItem.ItemId = itemToRentalItem.Id;
             rentalItem.Status = RentalItemStatus.Normal;
             rentalItemService.Create(rentalItem);
-            FillItemTable(itemToRentalItem);
+            FillItemTable();
         }
 
         // cancel/go back to prev screen
@@ -53,9 +50,9 @@ namespace VivesRental.Views
         }
 
         // fills table
-        private void FillItemTable(Item item)
+        private void FillItemTable()
         {
-            var list = rentalItemService.All().Where(x => x.ItemId == item.Id);
+            var list = rentalItemService.All().Where(x => x.ItemId == itemToRentalItem.Id);
             ItemTable.ItemsSource = list;
         }
     }
