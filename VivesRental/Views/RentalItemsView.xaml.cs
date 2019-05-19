@@ -34,7 +34,7 @@ namespace VivesRental.Views
         }
 
         // add rental item of the selected item in the prev screen
-        private void AddRentalItem(object sender, RoutedEventArgs e)
+        public void AddRentalItem(object sender, RoutedEventArgs e)
         {
             RentalItem rentalItem = new RentalItem();
             rentalItem.ItemId = itemToRentalItem.Id;
@@ -44,13 +44,13 @@ namespace VivesRental.Views
         }
 
         // cancel/go back to prev screen
-        private void Cancel(object sender, RoutedEventArgs e)
+        public void Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
         // fills table
-        private void FillItemTable()
+        public void FillItemTable()
         {
             var list = rentalItemService.All().Where(x => x.ItemId == itemToRentalItem.Id);
             ItemTable.ItemsSource = list;

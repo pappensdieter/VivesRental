@@ -14,9 +14,10 @@
 
         <DataGrid Name="OrderTable" Margin="10,10,10,10" VerticalAlignment="Top" AutoGenerateColumns="False">
             <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Width="100" Header="Order ID"/>
                 <DataGridTextColumn Binding="{Binding UserFirstName}" Width="100" Header="First Name"/>
                 <DataGridTextColumn Binding="{Binding UserName}" Width="100" Header="Name"/>
-                <DataGridTextColumn Binding="{Binding CreatedAt}" Width="100" Header="Date"/>
+                <DataGridTextColumn Binding="{Binding CreatedAt}" Header="Created At"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

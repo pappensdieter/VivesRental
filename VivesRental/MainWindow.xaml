@@ -30,8 +30,10 @@
                 <Button Content="Item Management" Margin="3,0,3,10" Click="ShowItemMangement"/>
                 <Button Content="Rental Orders" Margin="3,0,3,10" Click="ShowRentalOrders"/>
                 <Button Content="New Rental" Margin="3,0,3,10" Click="ShowNewRental"/>
+
+                <Label Content="Rental ID:" FontSize="12" Margin="3,0,3,3"/>
                 <TextBox Name="RentalId" Margin="3,0,3,3"/>
-                <Button Content="Accept Returns" Margin="3,0,3,25"/>
+                <Button Content="Accept Returns" Margin="3,0,3,25" Click="AcceptReturns"/>
                 <Button Content="Quit" Margin="3,0,3,0" Click="Quit"/>
             </StackPanel>
         </DockPanel>

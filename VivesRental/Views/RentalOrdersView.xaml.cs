@@ -34,12 +34,12 @@ namespace VivesRental.Views
         }
 
         // show all the orderlines in the selected order
-        private void ShowRentalOderDetails(object sender, RoutedEventArgs e)
+        public void ShowRentalOderDetails(object sender, RoutedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 RentalOrder rentalOrder = (RentalOrder)OrderTable.SelectedItem;
-                if (rentalOrder != null)
+                if (rentalOrder != null) // check for not null
                 {
                     Window window = new RentalOderDetailsView(rentalOrder);
                     window.Title = "Details of rental order: " + rentalOrder.Id;
@@ -56,20 +56,39 @@ namespace VivesRental.Views
         }
 
         // return the selected order
-        private void ReturnOrder(object sender, RoutedEventArgs e)
+        public void ReturnOrder(object sender, RoutedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 RentalOrder rentalOrder = (RentalOrder)OrderTable.SelectedItem;
-                var list = rentalOrderLineService.FindByRentalOrderId(rentalOrder.Id);
-
-                foreach (var orderLine in list)
+                if (rentalOrder != null) // check for not null
                 {
-                    rentalOrderLineService.Return(orderLine.Id, DateTime.Now);
-                }
+                    var list = rentalOrderLineService.FindByRentalOrderId(rentalOrder.Id);
+                    var i = 0; // +1 if item is already returned
 
-                string mesg = "Succesfully returned order " + rentalOrder.Id + "!";
-                MessageBox.Show(mesg);
+                    foreach (var orderLine in list)
+                    {
+                        if (orderLine.ReturnedAt == null) // check for already returned
+                        {
+                            rentalOrderLineService.Return(orderLine.Id, DateTime.Now);
+                        }
+                        else
+                        {
+                            i++;
+                        }
+                    }
+
+                    if (i < list.Count()) // 1 or more items were not yet returned
+                    {
+                        string mesg = "Succesfully returned order: " + rentalOrder.Id + "!";
+                        MessageBox.Show(mesg);
+                    }
+                    else // all items are already returned
+                    {
+                        string mesg = "Order: " + rentalOrder.Id + " is already completely returned!";
+                        MessageBox.Show(mesg);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -81,7 +100,7 @@ namespace VivesRental.Views
         }
 
         // shows new rental page
-        private void ShowNewRental(object sender, RoutedEventArgs e)
+        public void ShowNewRental(object sender, RoutedEventArgs e)
         {
             this.Close();
             Window window = new NewRentalView();
@@ -89,7 +108,7 @@ namespace VivesRental.Views
         }
 
         // cancel/go back to prev screen
-        private void Cancel(object sender, RoutedEventArgs e)
+        public void Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

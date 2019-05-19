@@ -37,11 +37,22 @@ namespace VivesRental.Views
         // returns the selected orderline
         public void ReturnOrderLine(object sender, RoutedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 RentalOrderLine rentalOrderLine = (RentalOrderLine)OrderLineTable.SelectedItem;
-                rentalOrderLineService.Return(rentalOrderLine.Id, DateTime.Now);
-                FillOrderTable();
+                if (rentalOrderLine != null) // check for not null
+                {
+                    if (rentalOrderLine.ReturnedAt == null) // check for already returned
+                    {
+                        rentalOrderLineService.Return(rentalOrderLine.Id, DateTime.Now);
+                        FillOrderTable();
+                    }
+                    else
+                    {
+                        string mesg = "Orderline " + rentalOrderLine.Id + " is already returned!";
+                        MessageBox.Show(mesg);
+                    }
+                }
             }
             catch (Exception ex)
             {
@@ -53,7 +64,7 @@ namespace VivesRental.Views
         }
 
         // cancel/go back to prev screen
-        private void Cancel(object sender, RoutedEventArgs e)
+        public void Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
         }

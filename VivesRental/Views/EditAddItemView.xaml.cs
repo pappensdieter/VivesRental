@@ -37,13 +37,13 @@ namespace VivesRental.Views
         }
 
         // add or update item
-        private void SubmitItem(object sender, RoutedEventArgs e)
+        public void SubmitItem(object sender, RoutedEventArgs e)
         {
-            if (itemToEdit == null)
+            if (itemToEdit == null) // itemToEdit is null so create a new item
             {
                 itemService.Create(GetItemFromForm());
             }
-            else
+            else // edit itemToEdit
             {
                 // needs to remember id cuz it become 0 otherwise
                 int id = itemToEdit.Id;
@@ -59,7 +59,7 @@ namespace VivesRental.Views
         }
 
         // cancel/go back to prev screen
-        private void Cancel(object sender, RoutedEventArgs e)
+        public void Cancel(object sender, RoutedEventArgs e)
         {
             ClearForm();
             this.DialogResult = false;
@@ -67,7 +67,8 @@ namespace VivesRental.Views
         }
 
         // get item from form without id
-        private Item GetItemFromForm()
+        // 1 or more fields not filled in => return null
+        public Item GetItemFromForm()
         {
             Item item = new Item();
             string mesg = "One or more fields are not filled in!";
@@ -126,7 +127,7 @@ namespace VivesRental.Views
         }
 
         // fills form
-        private void FillForm(Item item)
+        public void FillForm(Item item)
         {
             Name.Text = item.Name;
             Description.Text = item.Description;
@@ -136,7 +137,7 @@ namespace VivesRental.Views
         }
 
         // clears form
-        private void ClearForm()
+        public void ClearForm()
         {
             Name.Clear();
             Description.Clear();

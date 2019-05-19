@@ -35,48 +35,64 @@ namespace VivesRental
         }
 
         // shows item management page
-        private void ShowItemMangement(object sender, RoutedEventArgs e)
+        public void ShowItemMangement(object sender, RoutedEventArgs e)
         {
             Window window = new ItemManagementView();
             window.ShowDialog();
         }
 
         // shows rental orders page
-        private void ShowRentalOrders(object sender, RoutedEventArgs e)
+        public void ShowRentalOrders(object sender, RoutedEventArgs e)
         {
             Window window = new RentalOrdersView();
             window.ShowDialog();
         }
 
         // shows new rental page
-        private void ShowNewRental(object sender, RoutedEventArgs e)
+        public void ShowNewRental(object sender, RoutedEventArgs e)
         {
             Window window = new NewRentalView();
             window.ShowDialog();
         }
 
         // shows user management page
-        private void ShowUserManagement(object sender, RoutedEventArgs e)
+        public void ShowUserManagement(object sender, RoutedEventArgs e)
         {
             Window window = new UserManagementView();
             window.ShowDialog();
         }
 
         // shows user management page
-        private void Quit(object sender, RoutedEventArgs e)
+        public void Quit(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
-        
+
         // accept a renturn
-        private void AcceptReturn(object sender, RoutedEventArgs e)
+        public void AcceptReturns(object sender, RoutedEventArgs e)
         {
-            if (RentalId.Text != null)
+            if (!string.IsNullOrWhiteSpace(RentalId.Text))
             {
                 int id = Convert.ToInt16(RentalId.Text);
-                
+                RentalOrder rentalOrder = rentalOrderService.Get(id);
+
+                if (rentalOrder != null)
+                {
+                    Window window = new RentalOderDetailsView(rentalOrder);
+                    window.Title = "Details of rental order: " + rentalOrder.Id;
+                    window.ShowDialog();
+                }
+                else
+                {
+                    string mesg = "Rental id: " + id + " is invalid!";
+                    MessageBox.Show(mesg);
+                }
+            }
+            else
+            {
+                Window window = new RentalOrdersView();
+                window.ShowDialog();
             }
         }
-
     }
 }

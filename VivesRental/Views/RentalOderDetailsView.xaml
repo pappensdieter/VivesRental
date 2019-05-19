@@ -14,11 +14,12 @@
 
         <DataGrid Name="OrderLineTable" Margin="10,10,10,10" VerticalAlignment="Top" AutoGenerateColumns="False">
             <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding Id}" Width="100" Header="Orderline ID"/>
                 <DataGridTextColumn Binding="{Binding ItemName}" Width="100" Header="Item Name"/>
                 <DataGridTextColumn Binding="{Binding ItemDescription}" Width="100" Header="Description"/>
-                <DataGridTextColumn Binding="{Binding RentedAt}" Width="100" Header="Rented At"/>
-                <DataGridTextColumn Binding="{Binding ExpiresAt}" Width="100" Header="Expires At"/>
-                <DataGridTextColumn Binding="{Binding ReturnedAt}" Width="100" Header="Returned At"/>
+                <DataGridTextColumn Binding="{Binding RentedAt}" Header="Rented At"/>
+                <DataGridTextColumn Binding="{Binding ExpiresAt}" Header="Expires At"/>
+                <DataGridTextColumn Binding="{Binding ReturnedAt}" Header="Returned At"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

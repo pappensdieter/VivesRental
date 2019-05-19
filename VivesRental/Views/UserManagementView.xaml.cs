@@ -35,7 +35,7 @@ namespace VivesRental.Views
         // fills dropdown with userid's
         public void FillDrpUserId()
         {
-            drpUserId.ItemsSource = "leeg";
+            drpUserId.ItemsSource = "";
 
             var listUsers = userService.All();
             var listUserIds = new List<String>();
@@ -48,12 +48,12 @@ namespace VivesRental.Views
         }
 
         // select userid from dropdown
-        private void SelectUser(object sender, SelectionChangedEventArgs e)
+        public void SelectUser(object sender, SelectionChangedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 User user = userService.Get(Convert.ToInt16(drpUserId.SelectedItem));
-                if (user != null)
+                if (user != null) // check for not null
                 {
                     SetUserToForm(user);
                     FormEditMode(true);
@@ -69,10 +69,10 @@ namespace VivesRental.Views
         }
 
         // add user to database
-        private void AddUser(object sender, RoutedEventArgs e)
+        public void AddUser(object sender, RoutedEventArgs e)
         {
             User user = GetUserFromForm();
-            if (user != null)
+            if (user != null) // check for not null
             {
                 ClearForm();
                 userService.Create(user);
@@ -81,12 +81,12 @@ namespace VivesRental.Views
         }
 
         // edit the selected user
-        private void EditUser(object sender, RoutedEventArgs e)
+        public void EditUser(object sender, RoutedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 User user = GetUserFromForm();
-                if (user != null)
+                if (user != null) // check for not null
                 {
                     user.Id = Convert.ToInt16(drpUserId.SelectedItem);
                     ClearForm();
@@ -105,9 +105,9 @@ namespace VivesRental.Views
         }
 
         // delete the selected user
-        private void DeleteUser(object sender, RoutedEventArgs e)
+        public void DeleteUser(object sender, RoutedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 userService.Remove(Convert.ToInt16(drpUserId.SelectedItem));
                 ClearForm();
@@ -124,22 +124,23 @@ namespace VivesRental.Views
         }
 
         // cancel the form or go back to prev screen
-        private void Cancel(object sender, RoutedEventArgs e)
+        public void Cancel(object sender, RoutedEventArgs e)
         {
-            if (cbEditMode.IsChecked == true) // als editMode aan staan
+            if (cbEditMode.IsChecked == true) // editMode ON
             {
                 ClearForm();
                 FormEditMode(false);
                 FillDrpUserId();
             }
-            else // als editMode uit staan
+            else // editMode uit OFF
             {
                 this.Close();
             }
         }
 
-        // get user from form without id and check for input control
-        private User GetUserFromForm()
+        // get user from form without id
+        // 1 or more fields not filled in => return null
+        public User GetUserFromForm()
         {
             User user = new User();
             string mesg = "One or more fields are not filled in!";
@@ -188,7 +189,7 @@ namespace VivesRental.Views
         }
 
         // set user to form
-        private void SetUserToForm(User user)
+        public void SetUserToForm(User user)
         {
             FirstName.Text = user.FirstName;
             Name.Text = user.Name;
@@ -197,7 +198,7 @@ namespace VivesRental.Views
         }
 
         // clears form
-        private void ClearForm()
+        public void ClearForm()
         {
             FirstName.Clear();
             Name.Clear();
@@ -206,7 +207,7 @@ namespace VivesRental.Views
         }
 
         // sets form to editmode
-        private void FormEditMode(Boolean b)
+        public void FormEditMode(Boolean b)
         {
             btnAdd.IsEnabled = !b;
             cbEditMode.IsChecked = b;

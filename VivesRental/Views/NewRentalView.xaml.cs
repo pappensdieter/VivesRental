@@ -49,12 +49,12 @@ namespace VivesRental.Views
         }
 
         // adds item from available to your order
-        private void AddItemToOrder(object sender, MouseButtonEventArgs e)
+        public void AddItemToOrder(object sender, MouseButtonEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 RentalItem rentalItem = (RentalItem)AvailableList.SelectedItem;
-                if (rentalItem != null)
+                if (rentalItem != null) // check for not null
                 {
                     AvailableItemList.Remove(rentalItem);
                     OrderItemList.Add(rentalItem);
@@ -70,12 +70,12 @@ namespace VivesRental.Views
         }
 
         // removes item from your order
-        private void RemoveItemFromOrder(object sender, MouseButtonEventArgs e)
+        public void RemoveItemFromOrder(object sender, MouseButtonEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 RentalItem rentalItem = (RentalItem)OrderList.SelectedItem;
-                if (rentalItem != null)
+                if (rentalItem != null) // check for not null
                 {
                     AvailableItemList.Add(rentalItem);
                     OrderItemList.Remove(rentalItem);
@@ -91,16 +91,14 @@ namespace VivesRental.Views
         }
 
         // rent your items
-        private void Order(object sender, RoutedEventArgs e)
+        public void Order(object sender, RoutedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
-                // get user
                 User user = (User)cbUser.SelectedItem;
-
-                if (user != null)
+                if (user != null) // check for not null
                 {
-                    if (OrderItemList.Count() != 0)
+                    if (OrderItemList.Count() != 0) // check for orderlist not empty
                     {
                         // create rental order object
                         RentalOrder rentalOrder = new RentalOrder();
@@ -143,7 +141,7 @@ namespace VivesRental.Views
         }
 
         // cancel/go back to prev screen
-        private void Cancel(object sender, RoutedEventArgs e)
+        public void Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
@@ -156,7 +154,7 @@ namespace VivesRental.Views
         }
 
         // fills the available items list
-        private void FillAvailableItemsList()
+        public void FillAvailableItemsList()
         {
             var list = rentalItemService.GetAvailableRentalItems();
             foreach (var rentalItem in list)

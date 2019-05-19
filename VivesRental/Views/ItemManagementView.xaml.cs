@@ -32,8 +32,9 @@ namespace VivesRental.Views
         }
 
         // add a new item
-        private void AddItem(object sender, RoutedEventArgs e)
+        public void AddItem(object sender, RoutedEventArgs e)
         {
+            // same screen as EditItem => give null as var to know difference
             Window window = new EditAddItemView(null);
             window.Title = "Add Item";
             window.ShowDialog();
@@ -44,14 +45,15 @@ namespace VivesRental.Views
             }
         }
 
-        // edit he selected item
-        private void EditItem(object sender, RoutedEventArgs e)
+        // edit the selected item
+        public void EditItem(object sender, RoutedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 Item item = (Item)ItemTable.SelectedItem;
-                if(item != null)
+                if(item != null) // check for not null
                 {
+                    // same screen as AddItem => give item as var to know difference
                     Window window = new EditAddItemView(item);
                     window.Title = "Edit Item with id: " + item.Id;
                     window.ShowDialog();
@@ -72,12 +74,12 @@ namespace VivesRental.Views
         }
 
         // show rental items of the selected item
-        private void ShowRentalItems(object sender, RoutedEventArgs e)
+        public void ShowRentalItems(object sender, RoutedEventArgs e)
         {
-            try
+            try // check for valid selected item
             {
                 Item item = (Item)ItemTable.SelectedItem;
-                if (item != null)
+                if (item != null) // check for not null
                 {
                     Window window = new RentalItemsView(item);
                     window.Title = "Rental Items of: " + item.Name;
@@ -94,13 +96,13 @@ namespace VivesRental.Views
         }
 
         // cancel/go back to prev screen
-        private void Cancel(object sender, RoutedEventArgs e)
+        public void Cancel(object sender, RoutedEventArgs e)
         {
             this.Close();
         }
 
         // fills item table
-        private void FillItemTable()
+        public void FillItemTable()
         {
             var list = itemService.All();
             ItemTable.ItemsSource = list;
