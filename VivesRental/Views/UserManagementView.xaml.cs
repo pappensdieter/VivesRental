@@ -35,10 +35,11 @@ namespace VivesRental.Views
         // fills dropdown with userid's
         public void FillDrpUserId()
         {
+            drpUserId.ItemsSource = "leeg";
+
             var listUsers = userService.All();
             var listUserIds = new List<String>();
-
-            listUserIds.Add("Please slect a userId");
+            
             foreach (var user in listUsers)
             {
                 listUserIds.Add(user.Id.ToString());
@@ -49,11 +50,21 @@ namespace VivesRental.Views
         // select userid from dropdown
         private void SelectUser(object sender, SelectionChangedEventArgs e)
         {
-            User user = userService.Get(Convert.ToInt16(drpUserId.SelectedItem));
-            if (user != null)
+            try
             {
-                SetUserToForm(user);
-                FormEditMode(true);
+                User user = userService.Get(Convert.ToInt16(drpUserId.SelectedItem));
+                if (user != null)
+                {
+                    SetUserToForm(user);
+                    FormEditMode(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select a user!";
+                MessageBox.Show(mesg);
             }
         }
 
@@ -61,48 +72,119 @@ namespace VivesRental.Views
         private void AddUser(object sender, RoutedEventArgs e)
         {
             User user = GetUserFromForm();
-            ClearForm();
-            userService.Create(user);
-            FillDrpUserId();
+            if (user != null)
+            {
+                ClearForm();
+                userService.Create(user);
+                FillDrpUserId();
+            }
         }
 
         // edit the selected user
         private void EditUser(object sender, RoutedEventArgs e)
         {
-            User user = GetUserFromForm();
-            user.Id = user.Id = Convert.ToInt16(drpUserId.SelectedItem);
-            ClearForm();
-            FormEditMode(false);
-            userService.Edit(user);
+            try
+            {
+                User user = GetUserFromForm();
+                if (user != null)
+                {
+                    user.Id = Convert.ToInt16(drpUserId.SelectedItem);
+                    ClearForm();
+                    FormEditMode(false);
+                    userService.Edit(user);
+                    FillDrpUserId();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select a user!";
+                MessageBox.Show(mesg);
+            }
         }
 
         // delete the selected user
         private void DeleteUser(object sender, RoutedEventArgs e)
         {
-            userService.Remove(Convert.ToInt16(drpUserId.SelectedItem));
-            ClearForm();
-            FormEditMode(false);
-            FillDrpUserId();
+            try
+            {
+                userService.Remove(Convert.ToInt16(drpUserId.SelectedItem));
+                ClearForm();
+                FormEditMode(false);
+                FillDrpUserId();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select a user!";
+                MessageBox.Show(mesg);
+            }
         }
 
-        // cancel the form
+        // cancel the form or go back to prev screen
         private void Cancel(object sender, RoutedEventArgs e)
         {
-            ClearForm();
-            FormEditMode(false);
-            this.Close();
+            if (cbEditMode.IsChecked == true) // als editMode aan staan
+            {
+                ClearForm();
+                FormEditMode(false);
+                FillDrpUserId();
+            }
+            else // als editMode uit staan
+            {
+                this.Close();
+            }
         }
 
-        // get user from form without id
+        // get user from form without id and check for input control
         private User GetUserFromForm()
         {
             User user = new User();
-            user.FirstName = FirstName.Text;
-            user.Name = Name.Text;
-            user.PhoneNumber = PhoneNumber.Text;
-            user.Email = Email.Text;
+            string mesg = "One or more fields are not filled in!";
 
-            return user;
+            if (!string.IsNullOrWhiteSpace(FirstName.Text))
+            {
+                user.FirstName = FirstName.Text;
+
+                if (!string.IsNullOrWhiteSpace(Name.Text))
+                {
+                    user.Name = Name.Text;
+
+                    if (!string.IsNullOrWhiteSpace(PhoneNumber.Text))
+                    {
+                        user.PhoneNumber = PhoneNumber.Text;
+
+                        if (!string.IsNullOrWhiteSpace(Email.Text))
+                        {
+                            user.Email = Email.Text;
+
+                            return user;
+                        }
+                        else
+                        {
+                            MessageBox.Show(mesg);
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(mesg);
+                        return null;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(mesg);
+                    return null;
+                }
+            }
+            else
+            {
+                MessageBox.Show(mesg);
+                return null;
+            }
         }
 
         // set user to form

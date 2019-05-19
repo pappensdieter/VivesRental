@@ -36,21 +36,47 @@ namespace VivesRental.Views
         // show all the orderlines in the selected order
         private void ShowRentalOderDetails(object sender, RoutedEventArgs e)
         {
-            RentalOrder rentalOrder = (RentalOrder)OrderTable.SelectedItem;
-            Window window = new RentalOderDetailsView(rentalOrder);
-            window.Title = "Details of rental order: " + rentalOrder.Id;
-            window.ShowDialog();
+            try
+            {
+                RentalOrder rentalOrder = (RentalOrder)OrderTable.SelectedItem;
+                if (rentalOrder != null)
+                {
+                    Window window = new RentalOderDetailsView(rentalOrder);
+                    window.Title = "Details of rental order: " + rentalOrder.Id;
+                    window.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select a rental order!";
+                MessageBox.Show(mesg);
+            }
         }
 
         // return the selected order
         private void ReturnOrder(object sender, RoutedEventArgs e)
         {
-            RentalOrder rentalOrder = (RentalOrder)OrderTable.SelectedItem;
-            var list = rentalOrderLineService.FindByRentalOrderId(rentalOrder.Id);
-
-            foreach (var orderLine in list)
+            try
             {
-                rentalOrderLineService.Return(orderLine.Id, DateTime.Now);
+                RentalOrder rentalOrder = (RentalOrder)OrderTable.SelectedItem;
+                var list = rentalOrderLineService.FindByRentalOrderId(rentalOrder.Id);
+
+                foreach (var orderLine in list)
+                {
+                    rentalOrderLineService.Return(orderLine.Id, DateTime.Now);
+                }
+
+                string mesg = "Succesfully returned order " + rentalOrder.Id + "!";
+                MessageBox.Show(mesg);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select a rental order!";
+                MessageBox.Show(mesg);
             }
         }
 

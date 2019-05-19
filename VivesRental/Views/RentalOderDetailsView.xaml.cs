@@ -37,8 +37,19 @@ namespace VivesRental.Views
         // returns the selected orderline
         public void ReturnOrderLine(object sender, RoutedEventArgs e)
         {
-            RentalOrderLine rentalOrderLine = (RentalOrderLine)OrderLineTable.SelectedItem;
-            rentalOrderLineService.Return(rentalOrderLine.Id, DateTime.Now);
+            try
+            {
+                RentalOrderLine rentalOrderLine = (RentalOrderLine)OrderLineTable.SelectedItem;
+                rentalOrderLineService.Return(rentalOrderLine.Id, DateTime.Now);
+                FillOrderTable();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select an orderline!";
+                MessageBox.Show(mesg);
+            }
         }
 
         // cancel/go back to prev screen

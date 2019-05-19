@@ -47,24 +47,50 @@ namespace VivesRental.Views
         // edit he selected item
         private void EditItem(object sender, RoutedEventArgs e)
         {
-            Item item = (Item)ItemTable.SelectedItem;
-            Window window = new EditAddItemView(item);
-            window.Title = "Edit Item with id: " + item.Id;
-            window.ShowDialog();
-            
-            if (window.DialogResult == true)
+            try
             {
-                FillItemTable();
+                Item item = (Item)ItemTable.SelectedItem;
+                if(item != null)
+                {
+                    Window window = new EditAddItemView(item);
+                    window.Title = "Edit Item with id: " + item.Id;
+                    window.ShowDialog();
+
+                    if (window.DialogResult == true)
+                    {
+                        FillItemTable();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select an item!";
+                MessageBox.Show(mesg);
             }
         }
 
         // show rental items of the selected item
         private void ShowRentalItems(object sender, RoutedEventArgs e)
         {
-            Item item = (Item)ItemTable.SelectedItem;
-            Window window = new RentalItemsView(item);
-            window.Title = "Rental Items of: " + item.Name;
-            window.ShowDialog();
+            try
+            {
+                Item item = (Item)ItemTable.SelectedItem;
+                if (item != null)
+                {
+                    Window window = new RentalItemsView(item);
+                    window.Title = "Rental Items of: " + item.Name;
+                    window.ShowDialog();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select an item!";
+                MessageBox.Show(mesg);
+            }
         }
 
         // cancel/go back to prev screen

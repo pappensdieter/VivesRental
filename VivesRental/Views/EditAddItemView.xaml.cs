@@ -47,6 +47,7 @@ namespace VivesRental.Views
             {
                 // needs to remember id cuz it become 0 otherwise
                 int id = itemToEdit.Id;
+
                 itemToEdit = GetItemFromForm();
                 itemToEdit.Id = id;
                 itemService.Edit(itemToEdit);
@@ -69,13 +70,59 @@ namespace VivesRental.Views
         private Item GetItemFromForm()
         {
             Item item = new Item();
-            item.Name = Name.Text;
-            item.Description = Description.Text;
-            item.Manufacturer = Manufacturer.Text;
-            item.Publisher = Publisher.Text;
-            item.RentalExpiresAfterDays = Convert.ToInt16(RentalExpiresAfterDays.Text);
+            string mesg = "One or more fields are not filled in!";
 
-            return item;
+            if (!string.IsNullOrWhiteSpace(Name.Text))
+            {
+                item.Name = Name.Text;
+
+                if (!string.IsNullOrWhiteSpace(Description.Text))
+                {
+                    item.Description = Description.Text;
+
+                    if (!string.IsNullOrWhiteSpace(Manufacturer.Text))
+                    {
+                        item.Manufacturer = Manufacturer.Text;
+
+                        if (!string.IsNullOrWhiteSpace(Publisher.Text))
+                        {
+                            item.Publisher = Publisher.Text;
+
+                            if (!string.IsNullOrWhiteSpace(RentalExpiresAfterDays.Text))
+                            {
+                                item.RentalExpiresAfterDays = Convert.ToInt16(RentalExpiresAfterDays.Text);
+
+                                return item;
+                            }
+                            else
+                            {
+                                MessageBox.Show(mesg);
+                                return null;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(mesg);
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(mesg);
+                        return null;
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(mesg);
+                    return null;
+                }
+            }
+            else
+            {
+                MessageBox.Show(mesg);
+                return null;
+            }
         }
 
         // fills form

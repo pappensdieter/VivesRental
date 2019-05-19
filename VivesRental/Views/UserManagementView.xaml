@@ -21,20 +21,20 @@
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
-        <TextBlock Grid.Row="0" Grid.Column="0" Text="User ID" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
-        <ComboBox Name="drpUserId" Grid.Row="0" Grid.Column="1" Margin="10" SelectionChanged="SelectUser"/>
+        <TextBlock Text="User ID" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+        <ComboBox Name="drpUserId" Grid.Column="1" Margin="10" SelectionChanged="SelectUser"/>
 
-        <TextBlock Grid.Row="1" Grid.Column="0" Text="First Name" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+        <TextBlock Grid.Row="1" Text="First Name" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
         <TextBox Name="FirstName" Grid.Row="1" Grid.Column="1" Margin="10"/>
 
 
-        <TextBlock Grid.Row="2" Grid.Column="0" Text="Name" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+        <TextBlock Grid.Row="2" Text="Name" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
         <TextBox Name="Name" Grid.Row="2" Grid.Column="1" Margin="10"/>
 
-        <TextBlock Grid.Row="3" Grid.Column="0" Text="Email" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+        <TextBlock Grid.Row="3" Text="Email" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
         <TextBox Name="Email" Grid.Row="3" Grid.Column="1" Margin="10"/>
 
-        <TextBlock Grid.Row="4" Grid.Column="0" Text="Phone Number" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
+        <TextBlock Grid.Row="4" Text="Phone Number" Margin="10" HorizontalAlignment="Left" VerticalAlignment="Center" Width="100"/>
         <TextBox Name="PhoneNumber" Grid.Row="4" Grid.Column="1" Margin="10"/>
 
         <DockPanel Grid.Row="5" Grid.Column="1">

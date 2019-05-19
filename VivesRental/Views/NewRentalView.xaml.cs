@@ -51,47 +51,95 @@ namespace VivesRental.Views
         // adds item from available to your order
         private void AddItemToOrder(object sender, MouseButtonEventArgs e)
         {
-            RentalItem rentalItem = (RentalItem)AvailableList.SelectedItem;
-            AvailableItemList.Remove(rentalItem);
-            OrderItemList.Add(rentalItem);
+            try
+            {
+                RentalItem rentalItem = (RentalItem)AvailableList.SelectedItem;
+                if (rentalItem != null)
+                {
+                    AvailableItemList.Remove(rentalItem);
+                    OrderItemList.Add(rentalItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select a rental item!";
+                MessageBox.Show(mesg);
+            }
         }
 
         // removes item from your order
         private void RemoveItemFromOrder(object sender, MouseButtonEventArgs e)
         {
-            RentalItem rentalItem = (RentalItem)OrderList.SelectedItem;
-            AvailableItemList.Add(rentalItem);
-            OrderItemList.Remove(rentalItem);
+            try
+            {
+                RentalItem rentalItem = (RentalItem)OrderList.SelectedItem;
+                if (rentalItem != null)
+                {
+                    AvailableItemList.Add(rentalItem);
+                    OrderItemList.Remove(rentalItem);
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select a rental item!";
+                MessageBox.Show(mesg);
+            }
         }
 
         // rent your items
         private void Order(object sender, RoutedEventArgs e)
         {
-            // get user
-            User user = (User)cbUser.SelectedItem;
-            
-            if (user != null && OrderItemList.Count() != 0)
+            try
             {
-                // create rental order object
-                RentalOrder rentalOrder = new RentalOrder();
-                rentalOrder.UserId = user.Id;
-                rentalOrder.UserFirstName = user.FirstName;
-                rentalOrder.UserName = user.Name;
-                rentalOrder.UserEmail = user.Email;
-                rentalOrder.CreatedAt = DateTime.Now;
-                rentalOrderService.Create(rentalOrder);
+                // get user
+                User user = (User)cbUser.SelectedItem;
 
-                // get rental order id
-                var rentalOrderId = rentalOrderService.All().Last().Id;
-
-                // rent all the items form order table
-                foreach (var rentalItem in OrderItemList)
+                if (user != null)
                 {
-                    rentalOrderLineService.Rent(rentalOrderId, rentalItem.Id);
+                    if (OrderItemList.Count() != 0)
+                    {
+                        // create rental order object
+                        RentalOrder rentalOrder = new RentalOrder();
+                        rentalOrder.UserId = user.Id;
+                        rentalOrder.UserFirstName = user.FirstName;
+                        rentalOrder.UserName = user.Name;
+                        rentalOrder.UserEmail = user.Email;
+                        rentalOrder.CreatedAt = DateTime.Now;
+                        rentalOrderService.Create(rentalOrder);
+
+                        // get rental order id
+                        var rentalOrderId = rentalOrderService.All().Last().Id;
+
+                        // rent all the items form order table
+                        foreach (var rentalItem in OrderItemList)
+                        {
+                            rentalOrderLineService.Rent(rentalOrderId, rentalItem.Id);
+                        }
+                        this.Close();
+                    }
+                    else
+                    {
+                        string mesg = "You did not select a rental item!";
+                        MessageBox.Show(mesg);
+                    }
                 }
-                this.Close();
+                else
+                {
+                    string mesg = "You did not select a user!";
+                    MessageBox.Show(mesg);
+                }
             }
-            
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex);
+
+                string mesg = "You did not select a user!";
+                MessageBox.Show(mesg);
+            }
         }
 
         // cancel/go back to prev screen
